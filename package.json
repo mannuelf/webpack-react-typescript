@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node server.js",
-    "build": "webpack serve --mode development",
+    "start": "node server.js",
+    "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "webpack --mode production"
+    "postinstall": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
