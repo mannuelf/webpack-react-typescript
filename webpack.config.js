@@ -1,10 +1,25 @@
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+const htmlWebpackPlug = new HtmlWebpackPlugin({
+    template: './src/index.html',
+    filename: './index.html'
+})
+
 module.exports = {
-    entry: './src/index.ts',
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        htmlWebpackPlug
+    ],
+    devServer: {
+        contentBase: path.resolve(__dirname, './build'),
+        hot: true
     },
     module: {
         rules: [
@@ -18,13 +33,13 @@ module.exports = {
             },
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: 'babel-loader',
                 exclude: /node_modules/,
             }
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.jsx', '.js', '.ts'],
     },
     watch: true,
 }
