@@ -2,11 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const htmlWebpackPlug = new HtmlWebpackPlugin({
-    template: './src/index.html',
-    filename: './index.html'
-})
-
 module.exports = {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
@@ -15,10 +10,13 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        htmlWebpackPlug
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: './index.html'
+        })
     ],
     devServer: {
-        contentBase: path.resolve(__dirname, './build'),
+        contentBase: path.resolve(__dirname, 'dist'),
         hot: true,
         port: 9000
     },
