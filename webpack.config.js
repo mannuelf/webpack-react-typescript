@@ -19,7 +19,8 @@ module.exports = {
     ],
     devServer: {
         contentBase: path.resolve(__dirname, './build'),
-        hot: true
+        hot: true,
+        port: 9000
     },
     module: {
         rules: [
@@ -41,5 +42,4 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.jsx', '.js', '.ts'],
     },
-    watch: true,
 }
